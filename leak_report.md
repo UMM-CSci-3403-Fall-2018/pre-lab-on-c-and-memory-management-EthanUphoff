@@ -1,7 +1,8 @@
 # Leak report
 
 The issue that is occuring is that in the strip function calloc is being called which
-is allocating space for the saved characters and the null terminator. A good thing to note
+is allocating space for the saved characters and the null terminator. This allocation is
+not being freed at any point so it is creating a memory leak. A good thing to note
 about this is that if the string is only whitespace it will not allocate space so we do
 not need to free up space in those cases. We cannot free up the space in strip because
 the value being returned uses the allocated space. This means we have to free up space in

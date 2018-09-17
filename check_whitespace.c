@@ -66,7 +66,12 @@ int is_clean(char* str) {
   // 0 if they're equal, and a positive value if the first is
   // greater than the second.
   result = strcmp(str, cleaned);
-
+  //frees up space if cleaned has a length that is not 0,
+  //so blank strings with not cause an error because
+  //they never had space allocated to begin with
+  if(strlen(cleaned)!=0){
+  free(cleaned);
+  }
   return result == 0;
 }
 
